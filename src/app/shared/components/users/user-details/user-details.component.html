@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content>
+    <h2>User Details</h2>
+
+    <div *ngIf="!isLoading">
+      <p>Name: {{ userDetails?.name }}</p>
+      <p>Username: {{ userDetails?.username }}</p>
+      <p>Email: {{ userDetails?.email }}</p>
+      <p>Address: {{ userDetails?.address.city }}</p>
+    </div>
+    <div *ngIf="isLoading">
+      <p>Loading....</p>
+    </div>
+  </mat-card-content>
+</mat-card>

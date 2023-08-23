@@ -3,41 +3,45 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service';
+import { UsersService } from 'src/app/services/users.service';
 
 export interface UserData {
   id: string;
   name: string;
-  category: string;
-  description: string;
-  quantity: number;
-  price: number;
+  username: string;
+  email: string;
+  address: {};
 }
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss'],
 })
-export class ProductsComponent {
+export class UsersComponent {
   displayedColumns: string[] = [
     'slNo',
     'name',
-    'category',
-    'description',
-    'quantity',
-    'price',
+    'username',
+    'email',
+    'address',
     'action',
   ];
   dataSource!: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private usersService: UsersService, private router: Router) {}
 
   ngOnInit() {
     this.getUsers();
   }
+
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -46,26 +50,24 @@ export class ProductsComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  productDetails(productDetails: UserData) {
-    console.log(productDetails);
-    this.router.navigate([`/users/${productDetails.id}`], {
+  userDetails(userDetails: UserData) {
+    console.log(userDetails);
+    this.router.navigate([`/users/${userDetails.id}`], {
       state: {
-        productInfo: productDetails,
+        userInfo: userDetails,
       },
     });
   }
-
   getUsers() {
-    this.productService.getProducts().subscribe({
+    this.usersService.getUsers().subscribe({
       next: (response) => {
         console.log(response);
-        this.dataSource = new MatTableDataSource(response?.data?.products);
+        this.dataSource = new MatTableDataSource(response);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
       error: (error) => {
-        console.log('Err', error);
+        console.log(error);
       },
     });
   }
