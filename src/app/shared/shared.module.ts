@@ -8,9 +8,10 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserDetailsComponent } from './components/users/user-details/user-details.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { AddProductComponent } from './components/products/add-product/add-product.component';
 
 @NgModule({
-  declarations: [ProductsComponent, PostComponent, HomeComponent, UsersComponent, UserDetailsComponent, LoginComponent],
+  declarations: [ProductsComponent, PostComponent, HomeComponent, UsersComponent, UserDetailsComponent, LoginComponent, AddProductComponent],
   imports: [CommonModule, MaterialComponentsModule, RouterModule],
   exports: [],
 })

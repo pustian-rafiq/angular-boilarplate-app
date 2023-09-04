@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MaterialComponentsModule } from './material-components/material-components.module';
 import { InterceptorService } from './services/interceptor.service';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: 'LOCALSTORAGE', useValue: window.localStorage },
   ],
   bootstrap: [AppComponent],

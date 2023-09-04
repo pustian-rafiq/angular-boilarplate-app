@@ -28,7 +28,9 @@ export class ProductService {
       })
     );
   }
-
+  addProduct(data: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.API_URL}/products`, data);
+  }
   // getUserDetails(userId: number): Observable<any> {
   //   return this.httpClient.get(`${environment.API_ENDPOINT}/users/${userId}`);
   // }

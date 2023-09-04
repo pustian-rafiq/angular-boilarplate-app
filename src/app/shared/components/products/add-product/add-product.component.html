@@ -1,0 +1,58 @@
+<div class="dialog-wrapper">
+  <h1 mat-dialog-title class="modal-title">Add Product Form</h1>
+  <div mat-dialog-content>
+    <form action="" [formGroup]="productForm">
+      <label>Product Name</label>
+      <mat-form-field appearance="outline" class="input-field">
+        <!-- <mat-label>Product Name</mat-label> -->
+        <input
+          matInput
+          placeholder="Enter product name"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <label>Category Name</label>
+      <mat-form-field appearance="outline">
+        <!-- <mat-label>Select Category</mat-label> -->
+        <mat-select formControlName="category">
+          <mat-option value="Apple">Apple</mat-option>
+          <mat-option value="Mango">Mango</mat-option>
+          <mat-option value="Banana">Banana</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          placeholder="Enter product price"
+          formControlName="price"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          placeholder="Enter any quantity"
+          formControlName="quantity"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Enter any description"
+          formControlName="description"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions align="end" color="accent">
+    <!-- <button mat-raied-button mat-dialog-close>Close</button> -->
+    <button mat-raised-button color="primary" (click)="addProduct()">
+      Save
+    </button>
+    <button mat-raised-button mat-dialog-close color="warn">Close</button>
+  </div>
+</div>

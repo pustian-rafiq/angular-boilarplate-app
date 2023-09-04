@@ -1,5 +1,9 @@
-<h1>Products List</h1>
-
+<div class="product-head">
+  <h1>Products List</h1>
+  <button mat-raised-button color="primary" (click)="openAddProductDialog()">
+    Add Product
+  </button>
+</div>
 <mat-form-field>
   <mat-label>Search</mat-label>
   <input
@@ -9,7 +13,12 @@
     #input
   />
 </mat-form-field>
-
+<div>
+  <button (click)="loadProducts()">Load Players</button>
+</div>
+<div class="loading" *ngIf="loading$ | async">
+  <h1>Please wait...</h1>
+</div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- ID Column -->
@@ -71,7 +80,7 @@
   </table>
 
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSizeOptions]="[15, 20, 50, 100]"
     aria-label="Select page of users"
   ></mat-paginator>
 </div>

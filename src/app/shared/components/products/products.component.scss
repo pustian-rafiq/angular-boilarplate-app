@@ -11,3 +11,8 @@ td,
 th {
   width: 25%;
 }
+.product-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
